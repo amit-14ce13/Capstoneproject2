@@ -45,53 +45,19 @@ df5.columns = range(df5.shape[1])
 #print(df5)
 df6= df5.iloc[:,2]
 df6= df6.str.split("|", n= -1, expand = True)
-print(df6)
+#print(df6)
 df6a = df6.iloc[:,0].str.replace("=",'').astype(float)
 df6b = df6.iloc[:,1].str.replace("=",'').astype(float)
 df6c = df6.iloc[:,2].str.replace("=",'').astype(float)
 df6=pd.concat([df6a,df6b,df6c],axis=1)
 df6 = df6.fillna(0)
 df6.columns = ["Event1",'Event2','Event3']
-#print(df6)
+print(df6)
 #df6.to_csv('file2.csv')
 df6 = df6.astype(int)
 df6.loc[df6["Event1"]== 201131, 'count'] = 1
 df6.loc[df6["Event2"]== 201131, 'count'] = 1
 df6.loc[df6["Event3"]== 201131, 'count'] = 1
-df6 = df6.fillna(0)
 print(df6)
-#df6.to_csv('file2.csv')
-
-
-frames = [df5.iloc[:,[0,1]], df6.iloc[:,3]]
-df7 = pd.concat(frames, axis= 1)
-#print(df7)
-df7.columns = range(df7.shape[1])
-df7.columns = ['Dealer_ID','Header_ID','Event Count1' ]
-#df7["Event Count1"] = df7["Event Count1"].str.replace("=",'').astype(float)
-#df7.to_csv('file1.csv')
-#print(df7)
-#df7["Event Count1"]= df7["Event Count1"].astype(float)
-#df7.loc[df7["Event Count1"] == 201131.0,"Event Count1"] = 1
-#df7.loc[df7["Event Count1"] == 2201.0,"Event Count1"] = 1
-print(df7)
-df7.to_csv('file1.csv')
-#for i in df7["Event Count1"]:
-    #if i != 1:
-        #print(i)
-
-result = df7.dtypes
-#print(result)
-Total = df7['Event Count1'].sum()
-print(Total)
-df8 = df7.groupby(['Dealer_ID','Header_ID'], sort=False, as_index=False).sum()
-print(df8)
-Total1 = df8['Event Count1'].sum()
-print(Total1)
-#print(df7[df7.duplicated(keep = "last")])
-#print(df7.duplicated().sum())
-
-
-
-
-
+df6 = df6.fillna(0)
+df6.to_csv('file2.csv')
